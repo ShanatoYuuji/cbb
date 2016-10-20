@@ -1,11 +1,6 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<!--
-        	作者：491128833@qq.com
-        	时间：2016-10-20
-        	描述：ajax
-        -->
 		<meta charset="UTF-8">
 		<title>hello ajax</title>
 	</head>
@@ -42,10 +37,8 @@
 			}
 		};
 		
-		eg.out()=function(){
-			alert("123");
-		}
-			(function(){
+		
+		(function(){
 			var ajaxBtn=eg.$("ajaxBtn");
 			eg.addListener(ajaxBtn,"click",function(){
 				eg.AJAX({TYPE:"GET",
