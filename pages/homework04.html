@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>async or sync</title>
+	</head>
+	<body>
+		<div id="msg"></div>
+		<script>
+			var async=document.createElement('script');
+			//ファイル内容は：document.getElementById("msg").innerHTML+="async<br/>";
+			async.src='4-1.async.js?r='+Math.random()*99;
+			document.body.appendChild(sync);
+		</script>
+		<!--ファイル内容はdocument.getElementById("msg").innerHTML+="sync<br/>";-->
+		<script src="4-1.sync.js"></script>
+	</body>
+</html>

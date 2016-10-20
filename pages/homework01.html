@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<form method="post" action="test3.html" onsubmit="return eg.regCheck();">
+			<input type="hidden" name="" id="errnum" value="0"/>
+			アカウント:<input type="text" name="" id="userid" /><br/><br/>
+			パスワード:<input type="password" name="" id="userpwd" /><br/><br/>
+			確認用 &nbsp;：<input type="password" name="" id="userpwd2" />	<br/><br/>
+			性別：
+				<input type="radio" name="sex" value="0" />
+				男
+				<input type="radio" name="sex" value="1" />
+				女
+				<br />
+				<br />
+				年齢：
+					<select name="" id="age">
+					<option value="0" selected="selected">
+						年齢を選んでください！
+					</option>
+					<option value="1">
+						二十歳以下です！
+					</option>
+					<option value="2">
+						二十歳から二十四歳まで！
+					</option>
+					<option value="3">
+						二十四歳から三十歳まで！
+					</option>
+					<option value="4">
+						三十歳から三十五歳まで！
+					</option>
+					<option value="5">
+						三十五歳以上です！
+					</option>
+					</select>
+					<br />
+					<br />
+					好み：
+					<input type="checkbox"  name="like" value="1" class="like"/>
+					ネット
+					<input type="checkbox"  name="like" value="2" class="like"/>
+					ショッピング
+					<input type="checkbox"  name="like" value="3" class="like"/>
+					映画
+					<input type="checkbox"  name="like" value="4" class="like"/>
+					その他
+					<br />
+					<br />
+					紹介:<textarea name="" rows="4" cols="18" id="about" style="resize: none;">
+						
+					</textarea>
+					<br />
+					<br />
+			<input type="submit" value="登録" id="regBtn"/>
+			<input type="button" value="開錠" onclick="eg.unlock()" id="regUnclock"
+				style="display: none;"/>
+		</form>
+		
+		
+		<script>
+			var eg={};
+			eg.$=function(id){
+				return document.getElementById(id);
+			};
+			eg.regCheck=function(){
+				var uid=eg.$("userid");
+				var upwd=eg.$("userpwd");
+				var upwd2=eg.$("userpwd2");
+				if(uid.value==''){
+					alert("アカウントは空かない！");
+					eg.err();
+					return false;
+				};
+				if(upwd.value==''){
+					alert("パスワードは空かない！");
+					eg.err();
+					return false;
+				};
+				if(upwd2.value==''){
+					alert("パスワードは同じじゃない！");
+					eg.err();
+					return false;
+				};
+				
+				var about=eg.$("about");
+				if(about.value.length>60){
+					alert("紹介は長すぎです");
+					eg.err();
+					return false;
+				}
+				
+				var age=eg.$("age");
+				if(age.value=="0"){
+					alert("年齢を選んでください！");
+					eg.err();
+					return false;
+				}
+				
+				var likes=document.getElementsByClassName("like");
+				var likeNum=0;
+				for(var n=0;n<likes.length;n++){
+					if(likes[n].checked){
+						likeNum++;
+					}
+				}
+				if(likeNum==0){
+					alert("好みをせめて一つを選んでください！");
+					eg.err();
+					return false;
+				}
+				
+				return true;
+			}
+			eg.err=function(){
+				var el=eg.$("errnum");
+				var old=el.value;
+				el.value=parseInt(old)+1;		
+				eg.lock();
+			};
+			eg.lock=function(){
+				
+				var num=eg.$("errnum");
+				if(parseInt(num.value)>2){
+					eg.$("regBtn").disabled=true;
+					eg.$("regUnclock").style.display="block";	
+				};
+			};
+			eg.unlock=function(){
+				eg.$("regBtn").disabled=false;
+				eg.$("regUnclock").style.display="none";
+			};
+		</script>
+		
+	</body>
+</html>

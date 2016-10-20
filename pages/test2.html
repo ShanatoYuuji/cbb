@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>favorite</title>
+	</head>
+	<body>
+		<a href="javascript:js_method()">右键收藏：删掉网页img元素</a>
+		<img src="img/pic01.jpg" />
+	</body>
+	<!--
+    	作者：offline
+    	时间：2016-10-14
+    	描述：
+    -->
+    <script>
+		function js_method (){
+			var imgs=document.getElementsByTagName("img");
+			for(var i=imgs.length-1;i>=0;i--){
+				imgs[i].parentElement.removeChild(imgs[i]);
+			}
+		}
+	</script>
+</html>

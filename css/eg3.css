@@ -1,0 +1,39 @@
+ul,li{
+	list-style:none ;
+}
+#samallPhoto
+{
+	width: 620px;
+	margin: 10px 0;
+}
+#samallPhotoList{
+		margin: 0 auto;
+		width: 580px;
+		float: left;
+		padding: 0;
+}
+#samallPhoto li{
+	float: left;
+	margin-left: 10px;
+}
+#samallPhotoList img{
+	border:2px solid #000;
+	cursor:pointer;
+}
+#prve{
+	background: url(../img/pic02.jpg);
+	height: 40px;
+	width: 20px;
+	display: inline-block;
+	float: left;
+	cursor: pointer;
+}
+#next{
+	background:url(../img/pic01.jpg);
+	height: 10px;
+	width: 20px;
+	display: inline-block;
+	float: right;
+	cursor: pointer;
+}
+

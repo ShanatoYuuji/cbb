@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#pwdLvSpan{
+				display:inline-block;
+				width: 100px;
+				height: 5px;
+				background: #c3c3c3;
+			}
+			#pwdLvSpan i{
+				display: block;
+				background: green;
+				height: 5px;
+				width: 0px;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<form  method="get" action="homework01.html" onsubmit="return eg.regCheck()">
+		<input type="email" name="" id="email"/><br /> <br />	
+		<input type="text" name="" id="introduce" />
+		パスワード：<input type="password" id="userpwd" />
+		<input type="submit" value="submit" id="submit1"/>
+		</form>
+		強度
+		<span id="pwdLvSpan">
+			<i id="pwdLv"></i>
+		</span><br /><br />
+		<button onclick="eg.sayout(document.getElementById('email').value)">
+			内容出力</button>
+	</body>
+	<script>
+		var eg={};
+		eg.$=function (id){
+			return document.getElementById(id);
+		};
+		eg.sayout=function(content){
+			alert(content);
+		};
+		eg.addListener=function(target,type,handler){
+			if(target.addEventListener){
+				target.addEventListener(type,handler,false);
+			}else if(target.attachEvent){
+				target.attachEvent("on"+type,handler)
+			}else{
+				target["on"+type]=handler;
+			}
+		}
+		
+		
+		 eg.addEvent=function(){
+			var pwd=eg.$("userpwd");
+			eg.addListener(pwd,"keyup",function(){
+				var lv=0;
+				if(pwd.value.length>1&&pwd.value.length<3){
+					lv=25;
+				}else if(pwd.value.length>=3&&pwd.value.length<5){
+					lv=50;
+				}else if(pwd.value.length>=5&&pwd.value.length<10){
+					lv=75;
+				}else if(pwd.value.length>=10){
+					lv=100;
+				};
+				eg.$("pwdLv").style.width=lv+"px";
+			} );
+			
+		};
+		eg.addEvent();
+		
+		 
+		
+	</script>
+</html>

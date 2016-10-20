@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<form method="post" action="test3.html" onsubmit="return eg.regCheck();">
+			<input type="hidden" name="" id="errnum" value="0"/>
+			アカウント:<input type="text" name="" id="userid" /><br/><br/>
+			パスワード:<input type="text" name="" id="userpwd" /><br/><br/>
+			確認用 &nbsp;：<input type="text" name="" id="userpwd2" />	<br/><br/>
+			<input type="submit" value="登録" id="regBtn"/>
+			<input type="button" value="開錠" onclick="eg.unlock()" id="regUnclock"
+				style="display: none;"/>
+		</form>
+		<script>
+			var eg={};
+			eg.$=function(id){
+				return document.getElementById(id);
+			};
+			eg.regCheck=function(){
+				var uid=eg.$("userid");
+				var upwd=eg.$("userpwd");
+				var upwd2=eg.$("userpwd2");
+				if(uid.value==''){
+					alert("アカウントは空かない！");
+					eg.err();
+					return false;
+				};
+				if(upwd.value==''){
+					alert("パスワードは空かない！");
+					eg.err();
+					return false;
+				};
+				if(upwd2.value==''){
+					alert("パスワードは同じじゃない！");
+					eg.err();
+					return false;
+				};
+				return true;
+			}
+			eg.err=function(){
+				var el=eg.$("errnum");
+				var old=el.value;
+				el.value=parseInt(old)+1;		
+				eg.lock();
+			};
+			eg.lock=function(){
+				
+				var num=eg.$("errnum");
+				if(parseInt(num.value)>2){
+					eg.$("regBtn").disabled=true;
+					eg.$("regUnclock").style.display="block";	
+				};
+			};
+			eg.unlock=function(){
+				eg.$("regBtn").disabled=false;
+				eg.$("regUnclock").style.display="none";
+			};
+		</script>
+		
+	</body>
+</html>

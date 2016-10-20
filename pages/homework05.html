@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>hello ajax</title>
+	</head>
+	<body>
+		<div id="myajax">
+			Hello world!
+		</div>
+		<button type="button" id="ajaxBtn">
+			Ajaxで内容を変わる
+		</button>
+		<script src="../js/eg.lib.js"></script>
+	</body>
+		<script>
+			eg.AJAX=function(config,callback){
+				var xmlhttp;
+				if(window.XMLHttpRequest){
+					xmlhttp=new XMLHttpRequest();
+				}
+				if(xmlhttp){
+				if(config.ISASYN){
+					xmlhttp.onreadystatechange=function(){
+						if(xmlhttp.readyState==4 && xmlhttp.status==200){
+						callback(xmlhttp.responseText,xmlhttp.responseXML);
+						}
+					};
+					xmlhttp.open(config.TYPE,config.URL,false);
+					xmlhttp.send(config.data);
+					
+				}else{
+					xmlhttp.open(config.TYPE,config.URL,true);
+					xmlhttp.send(config.DATA);
+					callback(xmlhttp.responseText,xmlhttp.responseXML);
+				}
+			}
+		};
+		
+		
+		(function(){
+			var ajaxBtn=eg.$("ajaxBtn");
+			eg.addListener(ajaxBtn,"click",function(){
+				eg.AJAX({TYPE:"GET",
+				URL:"4-4.txt",	
+				ISASYN:true
+				},function(data){
+					eg.$("myajax").innerHTML=data;
+				});
+			});
+		})();
+		</script>
+		
+</html>
