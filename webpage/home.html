@@ -1,32 +1,58 @@
 <!DOCTYPE html>
-<html>
+<html class="no-js">
 	<head>
 		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<link rel="stylesheet" type="text/css" href="../css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="../css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="../css/cs-select.css" />
+		<link rel="stylesheet" type="text/css" href="../css/cs-skin-underline.css" />
 		<title>home</title>
 	</head>
 	
-	<body>
-		<header> welcome to ...</header>
-		<nav>
-			home page!
-		</nav>	
-		<section style="width: 50%;">
-			<article>
-				<header>title header</header>
-				这是文章
-				<p>
-					文章内容！
-				</p>
-				<footer>
-					文章後
-					更新一
-				</footer>
-			</article>
-			
-		</section>
-		<aside style="float: right;margin-right: 20%;">
-			他の一方
-		</aside>
-		<footer>ボディーのフォト</footer>
+	<body class="color-2">
+		<div class="container">
+			<header class="codrops-header">
+				<h1><span>welcome to ...</span> home page!</h1>	
+				<nav class="codrops-demos">
+					<!--
+                    	作者：491128833@qq.com
+                    	时间：2016-10-26
+                    	描述：
+					<a href="index.html">Border</a>
+					<a class="current-demo" href="index2.html">Underline</a>
+					<a href="index3.html">Elastic</a>
+					<a href="index4.html">Slide</a>
+					<a href="index5.html">Overlay</a>
+					<a href="index6.html">Rotate</a>
+					<a href="index7.html">Box Select</a>
+					<a href="index8.html">Circular</a>
+					                    -->
+
+				</nav>
+			</header>
+			<section>
+				<select class="cs-select cs-skin-underline">
+					<option value="" disabled selected>Choose a Bouquet</option>
+					<option value="1">Gardenia + Daisies</option>
+					<option value="2">Roses + Stephanotis</option>
+					<option value="3">Peony + Gerbera</option>
+					<option value="4">Orchid + Limonium</option>
+					<option value="5">Iris + Omithoalum</option>
+				</select>
+			</section>
+		</div><!-- /container -->
+		<script src="../js/classie.js"></script>
+		<script src="../js/selectFx.js"></script>
+		<script>
+			(function() {
+				[].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {	
+					new SelectFx(el);
+				} );
+			})();
+		</script>
+	
+		<footer style="margin-top: 50%;margin-bottom: 5%;margin-left: 45%;">ボディーのフォト</footer>
 	</body>
 </html>
