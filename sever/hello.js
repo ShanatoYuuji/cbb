@@ -10,8 +10,8 @@ var on200=function(req,res){
 };
 http.createServer(function(req,res){
 	on200(req,res);
-}).listen(9527,'127.0.0.1');
-console.log("Server running at 9527");
+}).listen(80,'127.0.0.1');
+console.log("Server running at 80");
 
 
 
