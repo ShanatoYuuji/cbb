@@ -1,0 +1,17 @@
+{
+	"txt":"text/plain",
+	"css":"text/css",
+	"htm":"text/html",
+	"git":"image/git",
+	"ico":"image/x-icon",
+	"jpeg":"image/jpeg",
+	"jpg":"image/jpeg",
+	"js":"text/javascript",
+	"json":"application/json",
+	"pdf":"application/pdf",
+	"png":"image/png",
+	"svg":"image/svg+xml",
+	"swf":"application/x-shockwave-flash",
+	"tiff":"image/tiff",
+	"wav":"audio/x-wav"
+	}
