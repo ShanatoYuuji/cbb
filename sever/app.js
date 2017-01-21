@@ -7,7 +7,7 @@ var MIME = require('./MIME.json');
 var onFiles = function(req, res) {
 	var pathname = url.parse(req.url).pathname;
 	pathname = path.normalize(pathname.replace("\.\.", ""));
-	if(pathname == "\\") {
+	if(pathname == "\\" || pathname ==="\\" || pathname == "\/" || pathname ==="\/") {
 		pathname = "/webpage/home.html";
 	}
 	//这里可以控制文件的路径  文件对于此js的路径
