@@ -7,7 +7,7 @@ var MIME = require('./MIME.json');
 var onFiles = function(req, res) {
 	req.setEncoding('utf-8');
 	var pathname = url.parse(req.url).pathname;
-	pathname = path.normalize(pathname.replace("\.\.", ""));
+	pathname = path.normalize(pathname.replace(/\.\./g, ""));
 	if(pathname == "\\" || pathname ==="\\" || pathname == "\/" || pathname ==="\/") {
 		pathname = "/webpage/home.html";
 	};
