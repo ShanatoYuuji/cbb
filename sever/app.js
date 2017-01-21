@@ -7,7 +7,7 @@ var MIME = require('./MIME.json');
 var onFiles = function(req, res) {
 	req.setEncoding('utf-8');
 	var pathname = url.parse(req.url).pathname;
-	pathname = path.normalize(pathname.replace(/\.\./g, ""));
+	pathname = path.normalize(pathname.replace("\.\.", ""));
 	console.log("show");
 	console.log(pathname);
 	if(pathname == "\\" || pathname ==="\\" || pathname == "\.\.\/" || pathname ==="\.\.\/") {
@@ -83,4 +83,4 @@ http.createServer(function(req, res) {
 	onFiles(req, res);
 
 }).listen(80);
-console.log("http server is listening at port 80.");
+console.log("http server is listening at port 80.1");
