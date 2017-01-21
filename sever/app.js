@@ -10,7 +10,7 @@ var onFiles = function(req, res) {
 	pathname = path.normalize(pathname.replace(/\.\./g, ""));
 	console.log("show");
 	console.log(pathname);
-	if(pathname == "\\" || pathname ==="\\" || pathname == "\/" || pathname ==="\/") {
+	if(pathname == "\\" || pathname ==="\\" || pathname == "\.\./" ) {
 		pathname = "/webpage/home.html";
 	};
 	//这里可以控制文件的路径  文件对于此js的路径
