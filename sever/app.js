@@ -5,11 +5,12 @@ var path = require('path')
 
 var MIME = require('./MIME.json');
 var onFiles = function(req, res) {
+	req.setEncoding('utf-8');
 	var pathname = url.parse(req.url).pathname;
 	pathname = path.normalize(pathname.replace("\.\.", ""));
 	if(pathname == "\\" || pathname ==="\\" || pathname == "\/" || pathname ==="\/") {
 		pathname = "/webpage/home.html";
-	}
+	};
 	//这里可以控制文件的路径  文件对于此js的路径
 	var filepath = "\.\."+pathname;
 	fs.readFile(filepath, "binary", function(err, file) {
