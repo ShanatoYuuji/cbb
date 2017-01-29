@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="keywords" content="一矢光明的主页" />
+		<meta name="description" content="website" />
+		<title>homepage</title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			body{
+				overflow: hidden;
+			}
+			canvas {
+				background: #1ECD97;
+			}
+		</style>
+	</head>
+
+	<body>
+		<canvas id="canvas" width="500" height="250">
+		</canvas>
+			<script>
+			window.onload=function(){
+				var canvas=document.getElementById("canvas")
+				var ctx=canvas.getContext("2d");
+				//可视区域
+				var s=window.screen;
+				var w=s.width;
+				var h=s.height;
+				canvas.width=w;
+				canvas.height=h;
+				//文本编辑
+				var str="新年快乐！";
+				var fontSize=15;
+				var cols=Math.floor(w/fontSize); //横排字数
+				
+				var drops=[];
+				for(var i=0;i<cols;i++){
+					drops.push(0);
+				}
+				function draw(){
+					ctx.fillStyle="rgba(0,0,0,0.05)";
+					ctx.fillRect(0,0,w,h);
+					ctx.font="600 "+fontSize+"px 微软雅黑";
+					ctx.fillStyle=ColorStyle();
+					for(var i=0;i<cols;i++){
+						var index=Math.floor(Math.random()*str.length);
+				
+						var x=i*fontSize;
+						var y=drops[i]*fontSize;
+						ctx.fillText(str[index],x,y);
+						if(y>=canvas.height&&Math.random()>0.99)
+						{
+							drops[i]=0;
+						}
+						drops[i]++;
+					}
+					
+					//ctx.fillText(str,500,100);
+				}
+				draw()
+				setInterval(draw,33);
+				
+				function  ColorStyle(){
+					var r=Math.floor(Math.random()*256);
+					var g=Math.floor(Math.random()*256);
+					var b=Math.floor(Math.random()*256);
+					return "rgb("+r+","+g+","+b+")";
+				}
+			}				
+			</script>
+			
+		
+	</body>
+
+</html>
