@@ -13,7 +13,7 @@ var onFiles = function(req, res) {
 	if(pathname == "\\" || pathname ==="\\" || pathname == "\.\.\/" || pathname ==="\.\.\/"||pathname == "\/" || pathname ==="\/" ||
 		pathname == "/" || pathname ==="/" ) {
 		//pathname = "/webpage/home.html";/
-		pathname="/pages/output.html"
+		pathname="/webpage/home.html"
 	};
 	//这里可以控制文件的路径  文件对于此js的路径
 	var filepath = "\.\."+pathname;
