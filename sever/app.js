@@ -8,7 +8,6 @@ var onFiles = function(req, res) {
 	req.setEncoding('utf-8');
 	var pathname = url.parse(req.url).pathname;
 	pathname = path.normalize(pathname.replace("\.\.", ""));
-	console.log("show");
 	console.log(pathname);
 	if(pathname == "\\" || pathname ==="\\" || pathname == "\.\.\/" || pathname ==="\.\.\/"||pathname == "\/" || pathname ==="\/" ||
 		pathname == "/" || pathname ==="/" ) {
