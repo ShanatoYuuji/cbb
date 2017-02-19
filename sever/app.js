@@ -27,7 +27,7 @@ var onFiles = function(req, res) {
 				if(err) throw err;
 				var filesearch = filepath.replace("..\\pages\\", "");
 				// execute a query on our database
-				var searchstring='select * from shiori where a='+filesearch;
+				var searchstring='select * from shiori where a=1'
 				console.log(searchstring);
 				client.query(searchstring, function(err, result) {
 					if(err) throw err;
