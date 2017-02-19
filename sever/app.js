@@ -9,23 +9,57 @@ var onFiles = function(req, res) {
 	var pathname = url.parse(req.url).pathname;
 	pathname = path.normalize(pathname.replace("\.\.", ""));
 	console.log(pathname);
-	if(pathname == "\\" || pathname ==="\\" || pathname == "\.\.\/" || pathname ==="\.\.\/"||pathname == "\/" || pathname ==="\/" ||
-		pathname == "/" || pathname ==="/" ) {
+	if(pathname == "\\" || pathname === "\\" || pathname == "\.\.\/" || pathname === "\.\.\/" || pathname == "\/" || pathname === "\/" ||
+		pathname == "/" || pathname === "/") {
 		//pathname = "/webpage/home.html";/
-		//pathname="/webpage/home.html"
-		pathname="/pages/output.html"
+		pathname = "/webpage/home.html"
+		//pathname = "/pages/output.html"
 	};
-	//这里可以控制文件的路径  文件对于此js的路径
-	var filepath = "\.\."+pathname;
+	//这里可以控制文件的路径  文件对于此js11的路径
+	var filepath = "\.\." + pathname;
 	fs.readFile(filepath, "binary", function(err, file) {
 		if(err) {
+			var pg = require('pg');
+			//构造连接数据库的连接字符串："tcp://用户名:密码@ip/相应的数据库名"   
+			var conString = "tcp://postgres:123zzz@localhost/postgres";
+			var client = new pg.Client(conString); //构造一个数据库对象   
+			client.connect(function(err) {
+				if(err) throw err;
+				var filesearch = filepath.replace("..\\pages\\", "");
+				// execute a query on our database
+				var searchstring='select * from shiori where a='+filesearch;
+				console.log(searchstring);
+				client.query(searchstring, function(err, result) {
+					if(err) throw err;
+
+					// just print the result to the console
+					console.log(result); // outputs: { name: 'brianc' }
+					res.writeHead(200, {
+						'Content-Type': 'text/javascript;charset=UTF-8'
+					});
+
+					res.write(filesearch);
+					res.write('\n')
+					for(var i = 0; i < result.rowCount; i++) {
+						res.write(JSON.stringify(result.rows[i].b));
+						res.write('\n');
+					}
+					res.end();
+					// disconnect the client
+					client.end(function(err) {
+						if(err) throw err;
+					});
+				});
+			});
+
+			/*
 			console.log(filepath);
 			console.log("路径出错");
 			res.writeHead(200, {
 				'Content-Type': 'text/javascript;charset=UTF-8'
 			});
 			res.write(pathname);
-			res.end("\n没有这个地址");
+			res.end("\n没有这个地址");*/
 		} else {
 			var ext = path.extname(filepath);
 			ext = ext ? ext.slice(1) : 'unknown';
@@ -70,18 +104,18 @@ var on200 = function(req, res, pathname) {
 };
 
 http.createServer(function(req, res) {
-//		var pathname = url.parse(req.url).pathname;
-//		var bodyStr = webpath[pathname];
-//		if(bodyStr) {
-//			//on202(req, res, bodyStr);
-//			on200(req, res,bodyStr);
-//		} else {
-//			res.writeHead(200, {
-//				'Content-Type': 'text/javascript;charset=UTF-8'
-//			});
-//			res.write(pathname);
-//			res.end("\n没有这个地址");
-//		}
+	//		var pathname = url.parse(req.url).pathname;
+	//		var bodyStr = webpath[pathname];
+	//		if(bodyStr) {
+	//			//on202(req, res, bodyStr);
+	//			on200(req, res,bodyStr);
+	//		} else {
+	//			res.writeHead(200, {
+	//				'Content-Type': 'text/javascript;charset=UTF-8'
+	//			});
+	//			res.write(pathname);
+	//			res.end("\n没有这个地址");
+	//		}
 	onFiles(req, res);
 
 }).listen(80);
