@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta name="keywords" content="一矢光明的主页" />
+		<meta name="description" content="ajax" />
+		<meta charset="UTF-8">
+		<title>ajax实例</title>
+	</head>
+
+	<body  onload="loadXMLDoc('test_xmlhttp.txt')" >
+		<div id="myDdv">
+			<h3>Let Ajax change this text</h3>
+			<input type="button" onclick="" value="change Content"></input>
+			
+			<div id="T1" style="border:1px solid black;"></div><br />
+			<button onclick="loadXMLDoc('test_xmlhttp2.txt')">Click</button>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var xmlhttp;
+
+		function loadXMLDoc(url) {
+			xmlhttp = null;
+			if(window.XMLHttpRequest) {
+				xmlhttp = new XMLHttpRequest();
+			} 
+			if(xmlhttp != null) {
+				xmlhttp.onreadystatechange = state_Change;
+				xmlhttp.open("GET", url, true);
+				xmlhttp.send(null);
+			} else {
+				alert("Your browser does not support XMLHTTP.")
+			}
+		}
+
+		function state_Change() {
+			if(xmlhttp.readyState == 4) {
+				if(xmlhttp.status == 200) {
+					//200="OK"
+					document.getElementById('T1').innerHTML = xmlhttp.responseText;
+				} else {
+					alert("Problem retrieving data:" + xmlhttp.statusText);
+				}
+			}
+		}
+	</script>
+
+</html>

@@ -25,7 +25,7 @@ var onFiles = function(req, res) {
 			var client = new pg.Client(conString); //构造一个数据库对象   
 			client.connect(function(err) {
 				if(err) throw err;
-				var filesearch = filepath.replace("..\\pages\\", "");
+				var filesearch = filepath.replace("\.\.\\pages\\", "");
 				// execute a query on our database
 				var searchstring='select * from shiori where a=1'
 				console.log(searchstring);

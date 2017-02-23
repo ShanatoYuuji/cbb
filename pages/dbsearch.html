@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<meta name="keywords" content="一矢光明的主页" />
 		<meta name="description" content="website" />
 		<title>数据查询页面</title>
 	</head>
+
 	<body>
 		<script type="text/javascript">
-			function myfunction(){
+			function myfunction() {
 				//alert('function');
-				var a=document.getElementById('input_search');
-				var b=document.getElementById('input_a');
-				b.href=a.value;
+				var a = document.getElementById('input_search');
+				var b = document.getElementById('input_a');
+				b.href = a.value;
 				alert(a.value);
 			}
-			
 		</script>
 		<input type="text" id="input_search" />
 		<input type="button" value="修改查询内容" onclick="myfunction()" />
-		<a href="./">主页</a>
+		<a href="../">主页</a>
 		<a href="" id="input_a">查询</a>
 	</body>
+
 </html>
