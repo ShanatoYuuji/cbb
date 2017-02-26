@@ -2,30 +2,40 @@
 <html>
 
 	<head>
-		<meta name="keywords" content="一矢光明的主页" />
-		<meta name="description" content="ajax" />
 		<meta charset="UTF-8">
-		<title>ajax实例</title>
+		<meta name="keywords" content="一矢光明的主页" />
+		<meta name="description" content="数据库查询ajax" />
+		<title>数据库查询</title>
 	</head>
 
-	<body  onload="loadXMLDoc('test_xmlhttp.txt')" >
+	<body>
 		<div id="myDdv">
 			<h3>Let Ajax change this text</h3>
 			<input type="button" onclick="" value="change Content"></input>
-			
+			<input  id="intxt_para" type="text" />
 			<div id="T1" style="border:1px solid black;"></div><br />
 			<button onclick="loadXMLDoc('test_xmlhttp2.txt')">Click</button>
-			<button onclick="loadXMLDoc('2')">WE</button>
+			<button onclick="eg.searchee()">WE</button>
 		</div>
 	</body>
-	<script type="text/javascript">
-		var xmlhttp;
 
+	<script type="text/javascript">
+		
+		var eg={};
+		eg.searchee=function (){
+			var searchpara=eg.$('intxt_para').value;
+			loadXMLDoc(searchpara);
+		}
+		eg.$=function(id){
+			return document.getElementById(id);
+		}
+		
+		var xmlhttp;
 		function loadXMLDoc(url) {
 			xmlhttp = null;
 			if(window.XMLHttpRequest) {
 				xmlhttp = new XMLHttpRequest();
-			} 
+			}
 			if(xmlhttp != null) {
 				xmlhttp.onreadystatechange = state_Change;
 				xmlhttp.open("GET", url, true);

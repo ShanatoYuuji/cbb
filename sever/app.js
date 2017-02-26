@@ -5,6 +5,9 @@ var path = require('path')
 
 var MIME = require('./MIME.json');
 var onFiles = function(req, res) {
+	//请求
+	console.log("请求的内容");
+	console.log(req);
 	req.setEncoding('utf-8');
 	var pathname = url.parse(req.url).pathname;
 	pathname = path.normalize(pathname.replace("\.\.", ""));
@@ -19,16 +22,21 @@ var onFiles = function(req, res) {
 	var filepath = "\.\." + pathname;
 	fs.readFile(filepath, "binary", function(err, file) {
 		if(err) {
+			//	请求url操作
+			var stringurl = req.url;
+			var strurllst = stringurl.split('\/');
+			var stringreq = strurllst[strurllst.length - 1];
+			console.log("请求的参数为："+stringreq);
 			var pg = require('pg');
 			//构造连接数据库的连接字符串："tcp://用户名:密码@ip/相应的数据库名"   
 			var conString = "tcp://postgres:123zzz@localhost/postgres";
 			var client = new pg.Client(conString); //构造一个数据库对象   
 			client.connect(function(err) {
 				if(err) throw err;
-				var filesearch = filepath.replace("\.\.\\pages\\", "");
+				//下面是数据库查询
 				// execute a query on our database
-				var searchstring='select * from shiori where a=1'
-				console.log(searchstring);
+				var searchstring = 'select * from shiori where a='+stringreq;
+				//console.log(searchstring);
 				client.query(searchstring, function(err, result) {
 					if(err) throw err;
 
@@ -38,7 +46,7 @@ var onFiles = function(req, res) {
 						'Content-Type': 'text/javascript;charset=UTF-8'
 					});
 
-					res.write(filesearch);
+					//res.write("请求的参数为："+filesearch);
 					res.write('\n')
 					for(var i = 0; i < result.rowCount; i++) {
 						res.write(JSON.stringify(result.rows[i].b));
@@ -51,7 +59,7 @@ var onFiles = function(req, res) {
 					});
 				});
 			});
-
+			//没有访问路径的处理
 			/*
 			console.log(filepath);
 			console.log("路径出错");
