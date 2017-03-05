@@ -12,7 +12,7 @@ client.connect(function(error, results) {
         console.log("client.connect OK.\n");  
 });  
 
-var query=client.query("select * from shiori");
+var query=client.query("select * from jiying where title LIKE '%少女%' order by id limit 10");
 
 query.on('row',function(row){
 	console.log(row);

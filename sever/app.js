@@ -26,6 +26,8 @@ var onFiles = function(req, res) {
 			var stringurl = req.url;
 			var strurllst = stringurl.split('\/');
 			var stringreq = strurllst[strurllst.length - 1];
+			//对请求的地址做编码转换
+			var stringreq =decodeURIComponent(stringreq);
 			console.log("请求的参数为："+stringreq);
 			var pg = require('pg');
 			//构造连接数据库的连接字符串："tcp://用户名:密码@ip/相应的数据库名"   
@@ -35,8 +37,10 @@ var onFiles = function(req, res) {
 				if(err) throw err;
 				//下面是数据库查询
 				// execute a query on our database
-				var searchstring = 'select * from shiori where a='+stringreq;
 				//console.log(searchstring);
+				//var searchstring = 'select * from shiori where a='+stringreq;
+				var searchstring = "select title,link from jiying where title LIKE '%"+stringreq+"%' order by id limit 10";
+				
 				client.query(searchstring, function(err, result) {
 					if(err) throw err;
 
@@ -49,8 +53,9 @@ var onFiles = function(req, res) {
 					//res.write("请求的参数为："+filesearch);
 					res.write('\n')
 					for(var i = 0; i < result.rowCount; i++) {
-						res.write(JSON.stringify(result.rows[i].b));
-						res.write('\n');
+						res.write(JSON.stringify(result.rows[i].title));
+						res.write(JSON.stringify(result.rows[i].link));
+						res.write('</br>');
 					}
 					res.end();
 					// disconnect the client
