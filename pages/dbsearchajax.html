@@ -13,6 +13,7 @@
 			<h3>Let Ajax change this text</h3>
 			<input type="button" onclick="" value="change Content"></input>
 			<input  id="intxt_para" type="text" />
+			 <input id="pagecount" type="number" value="1"/>
 			<div id="T1" style="border:1px solid black;"></div><br />
 			<button onclick="loadXMLDoc('test_xmlhttp2.txt')">Click</button>
 			<button onclick="eg.searchee()">WE</button>
@@ -38,6 +39,8 @@
 			}
 			if(xmlhttp != null) {
 				xmlhttp.onreadystatechange = state_Change;
+				url=url+".";
+				url=url+document.getElementById("pagecount").value;
 				xmlhttp.open("GET", url, true);
 				xmlhttp.send(null);
 			} else {

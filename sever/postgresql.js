@@ -14,6 +14,7 @@ client.connect(function(error, results) {
 
 var query=client.query("select * from jiying where title LIKE '%少女%' order by id limit 10");
 
+//var qurey=client.query("select * from jiying where title LIKE '%少女%' AND id>(select MAX(id) from (select id from jiying order by id limit 9000 )b ) order by id limit 50");
 query.on('row',function(row){
 	console.log(row);
 })
