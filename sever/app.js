@@ -1,7 +1,9 @@
 var http = require('http');
 var url = require('url');
 var fs = require('fs');
-var path = require('path')
+var path = require('path');
+var express=require('express');
+var session=require('express-session');
 
 var MIME = require('./MIME.json');
 var onFiles = function(req, res) {
@@ -29,6 +31,9 @@ var onFiles = function(req, res) {
 			//对请求的地址做编码转换
 			var stringreq =decodeURIComponent(stringreq);
 			console.log("请求的参数为："+stringreq);
+			if(stringreq=='favicon.ico'){
+				return ;
+			}
 			var stringreqls=stringreq.split(".");
 			var ppp=stringreqls[0];
 			var pagecount=stringreqls[1];
