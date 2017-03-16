@@ -48,7 +48,14 @@ var onFiles = function(req, res) {
 				//console.log(searchstring);
 				//var searchstring = 'select * from shiori where a='+stringreq;
 				//var searchstring = "select title,link from jiying where title LIKE '%"+stringreq+"%' order by id limit 10";
-				var searchstring="select title,link from jiying where title LIKE '%"+ppp+"%' AND id>(select MAX(id) from (select id from jiying where title LIKE '%"+ppp+"%' order by id limit "+50*pagecount+ ")b ) order by id limit 50";
+				var searchstring;
+				if(pagecount<=1){
+					searchstring="select title,link from jiying where title LIKE '%"+ppp+"%' order by id limit 50";
+				}else{
+					 searchstring="select title,link from jiying where title LIKE '%"+ppp+"%' AND id>(select MAX(id) from (select id from jiying where 						title LIKE '%"+ppp+"%' order by id limit "+50*pagecount+ ")b ) order by id limit 50";
+					
+				}
+				
 				console.log("查询语句");
 				console.log(searchstring);
 				client.query(searchstring, function(err, result) {
