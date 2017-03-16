@@ -31,7 +31,7 @@ var onFiles = function(req, res) {
 			//对请求的地址做编码转换
 			var stringreq =decodeURIComponent(stringreq);
 			console.log("请求的参数为："+stringreq);
-			if(stringreq=='favicon.ico'){
+			if(stringreq=='favicon.ico'||stringreq.length<1){
 				return ;
 			}
 			var stringreqls=stringreq.split(".");
