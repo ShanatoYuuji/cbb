@@ -18,8 +18,12 @@
             <input type="button" onclick="" value="change Content"></input>
     		<button onclick="loadXMLDoc('test_xmlhttp2.txt')">Click</button>
            -->
+         	<label>查询内容</label>
 			<input  id="intxt_para" type="text" />
+			<label>页码数</label>
+			<input type="button" value="<" onclick="eg.uppage()"/>
 			<input id="pagecount" type="number" value="1"/>
+			<input type="button" value=">" onclick="eg.downpage()" />
 			<button onclick="eg.searchee()">查询</button>
 			<div id="T1" style="border:1px solid black;"></div><br />
 		</div>
@@ -64,6 +68,12 @@
 					alert("Problem retrieving data:" + xmlhttp.statusText);
 				}
 			}
+		}
+		eg.uppage=function(){
+			eg.$('pagecount').value=parseInt(eg.$('pagecount').value)-1;
+		}
+		eg.downpage=function(){
+			eg.$('pagecount').value=parseFloat(eg.$('pagecount').value)+1;
 		}
 	</script>
 </html>
