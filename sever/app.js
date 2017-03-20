@@ -37,6 +37,10 @@ var onFiles = function(req, res) {
 			var stringreqls=stringreq.split(".");
 			var ppp=stringreqls[0];
 			var pagecount=stringreqls[1];
+			
+			if(!isNumber(pagecount)){
+				return ;
+			}
 			var pg = require('pg');
 			//构造连接数据库的连接字符串："tcp://用户名:密码@ip/相应的数据库名"   
 			var conString = "tcp://postgres:123zzz@localhost/postgres";
@@ -150,3 +154,14 @@ http.createServer(function(req, res) {
 
 }).listen(80);
 console.log("http server is listening at port 80.1");
+
+//正则表达式来判断是否为正整数
+function isNumber(value){
+	var patrn=/^[0-9]*[1-9][0-9]*$/;
+	if(patrn.exec(value)==null||value==""){
+		return false;
+	}else{
+		return true;
+	}
+
+}
