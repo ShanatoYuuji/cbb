@@ -5,5 +5,8 @@
 	mamargin-right: 25%;
 	width: 50%;
 	height: 80%;
-	color:azure;
+	color:white;
+}
+body{
+	background-image:url(../img/1_bg_blue.png);
 }
