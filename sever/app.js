@@ -152,7 +152,7 @@ http.createServer(function(req, res) {
 	//		}
 	onFiles(req, res);
 
-}).listen(80);
+}).listen(3000);
 console.log("http server is listening at port 80.1");
 
 //正则表达式来判断是否为正整数
